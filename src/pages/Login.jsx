@@ -10,6 +10,7 @@ export default function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    localStorage.setItem('kgym_auth', 'true');
     navigate('/');
   };
 

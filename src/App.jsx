@@ -1,5 +1,10 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import DashboardLayout from './layouts/DashboardLayout';
+
+const ProtectedRoute = ({ children }) => {
+  const isAuth = localStorage.getItem('kgym_auth') === 'true';
+  return isAuth ? children : <Navigate to="/login" replace />;
+};
 
 // Pages
 import Login from './pages/Login';
@@ -37,7 +42,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         
-        <Route path="/" element={<DashboardLayout />}>
+        <Route path="/" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
           <Route index element={<DashboardOverview />} />
           
           <Route path="membership" element={<Membership />} />

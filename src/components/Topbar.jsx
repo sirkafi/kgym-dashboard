@@ -64,6 +64,7 @@ export default function Topbar() {
               <button 
                 onClick={() => {
                   setShowSettings(false);
+                  localStorage.removeItem('kgym_auth');
                   navigate('/login');
                 }}
                 style={{
